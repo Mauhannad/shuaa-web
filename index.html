@@ -26,6 +26,13 @@
 <meta name="twitter:description" content="فحص جوي بالطائرات المسيّرة وتحليل بصري وحراري بالذكاء الاصطناعي — نكشف أعطال محطتك قبل أن تتحوّل إلى خسائر.">
 <meta name="twitter:image" content="assets/og-image.jpg">
 
+<!-- يجب أن يسبق support.js: الحارس في support.js هو `if (!window.__resources)`، وبدونه
+     يعيد جلب الصفحة بـ fetch(location.href) ثم runtime.updateHtml فتُركَّب الصفحة من جديد
+     وتتكرّر حركات data-reveal. كائن فاضٍ يكفي لتخطّي ذلك دون أي أثر آخر. -->
+<script>
+  window.__resources = window.__resources || {};
+</script>
+
 <script src="./support.js"></script>
 </head>
 <body>
