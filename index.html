@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية</title>
+<title>شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية</title>
 <meta name="description" content="فحص جوي لمحطات الطاقة الشمسية بالطائرات المسيّرة، وتحليل بصري وحراري بنماذج ذكاء اصطناعي سعودية يكشف البؤر الساخنة والشروخ وتراكم الأتربة قبل أن تُكلّفك.">
 <meta name="theme-color" content="#0A5CE6">
 
@@ -13,16 +13,16 @@
 
 <!-- مشاركة الروابط. بدّل SITE_URL بعنوان الموقع الفعلي بعد النشر — og:image يجب أن يكون رابطاً مطلقاً. -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="عين الشمس">
+<meta property="og:site_name" content="شعاع">
 <meta property="og:locale" content="ar_SA">
-<meta property="og:title" content="عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية">
+<meta property="og:title" content="شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية">
 <meta property="og:description" content="فحص جوي بالطائرات المسيّرة وتحليل بصري وحراري بالذكاء الاصطناعي — نكشف أعطال محطتك قبل أن تتحوّل إلى خسائر.">
 <meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="محطة طاقة شمسية من الجو">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية">
+<meta name="twitter:title" content="شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية">
 <meta name="twitter:description" content="فحص جوي بالطائرات المسيّرة وتحليل بصري وحراري بالذكاء الاصطناعي — نكشف أعطال محطتك قبل أن تتحوّل إلى خسائر.">
 <meta name="twitter:image" content="assets/og-image.jpg">
 
@@ -292,7 +292,7 @@ input,textarea,button{font-family:inherit}
           <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;display:inline-block"></span>
           <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:inline-block"></span>
         </div>
-        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7f93b3;letter-spacing:.03em">dashboard.ainalshams.sa</span>
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7f93b3;letter-spacing:.03em">SHUAA / SOLAR INSPECTION</span>
       </div>
       <div style="padding:clamp(14px,2vw,20px);display:flex;flex-wrap:wrap;gap:14px">
         <div style="flex:2 1 380px;background:#0c1a30;border:1px solid #16294a;border-radius:14px;padding:18px">
@@ -715,7 +715,7 @@ input,textarea,button{font-family:inherit}
 <footer style="background:#fff;border-top:1px solid #E7EDF6;padding:clamp(48px,6vw,72px) 24px 30px">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
     <div style="max-width:340px">
-      <img src="assets/ain-logo.png" alt="عين الشمس Ain Al-Shams" style="width:148px;height:auto;display:block">
+      <img src="assets/shuaa-logo.png" alt="شعار شعاع" style="width:240px;max-width:100%;height:auto;display:block">
       <p style="font-size:14.5px;line-height:1.8;color:#5a6b84;margin:16px 0 0">{{ t.ftDesc }}</p>
       <div style="margin-top:22px;display:flex;align-items:center">
         <img src="assets/saudi-made.png" alt="{{ t.altSaudiMade }}" style="height:42px;width:auto;display:block">
@@ -758,7 +758,7 @@ class Component extends DCLogic {
     try {
       const q = new URLSearchParams(window.location.search).get('lang');
       if (q === 'ar' || q === 'en') return q;
-      const saved = window.localStorage.getItem('ain-lang');
+      const saved = window.localStorage.getItem('shuaa-lang') || window.localStorage.getItem('ain-lang');
       if (saved === 'ar' || saved === 'en') return saved;
       const nav = (window.navigator.language || 'ar').toLowerCase();
       if (!nav.startsWith('ar')) return 'en';
@@ -845,7 +845,7 @@ class Component extends DCLogic {
 
   toggleLang = () => {
     const next = this.state.lang === 'ar' ? 'en' : 'ar';
-    try { window.localStorage.setItem('ain-lang', next); } catch (e) { /* تجاهل */ }
+    try { window.localStorage.setItem('shuaa-lang', next); } catch (e) { /* تجاهل */ }
     this.setState({ lang: next, menuOpen: false, wordIndex: 0 });
   };
 
@@ -1151,11 +1151,11 @@ class Component extends DCLogic {
       heroFlip: 'scaleX(-1)',
       sevLabelW: '46px',
 
-      docTitle: 'عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية',
+      docTitle: 'شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية',
       docDesc: 'فحص جوي لمحطات الطاقة الشمسية بالطائرات المسيّرة، وتحليل بصري وحراري بنماذج ذكاء اصطناعي سعودية يكشف البؤر الساخنة والشروخ وتراكم الأتربة قبل أن تُكلّفك.',
 
-      brandName: 'عين الشمس',
-      brandSub: 'AIN AL-SHAMS',
+      brandName: 'شعاع',
+      brandSub: 'SHUAA',
       langSwitch: 'EN',
       langShort: 'EN',
       langAria: 'Switch to English',
@@ -1172,8 +1172,8 @@ class Component extends DCLogic {
       shareX: 'إكس',
       shareLinkedIn: 'لينكدإن',
       shareMore: 'خيارات أخرى…',
-      shareMsg: 'عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية',
-      shareSubject: 'عين الشمس — فحص جوي ذكي لمحطات الطاقة الشمسية',
+      shareMsg: 'شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية',
+      shareSubject: 'شعاع — فحص جوي ذكي لمحطات الطاقة الشمسية',
       navServices: 'خدماتنا',
       navTech: 'التقنية',
       navDefects: 'الأعطال',
@@ -1342,7 +1342,7 @@ class Component extends DCLogic {
       pr4p: 'تقريرٌ جغرافي مفصّل بأولويات صيانةٍ قابلة للتنفيذ فوراً.',
 
       ctaH2: 'ارفعوا كفاءة أصولكم الشمسية بقرارات أدق',
-      ctaP: 'دع عين الشمس تفحص محطتك من الجو، وتكشف ما يعيق أداءها قبل أن يتحوّل إلى خسارة.',
+      ctaP: 'دع شعاع يفحص محطتك من الجو، ويكشف ما يعيق أداءها قبل أن يتحوّل إلى خسارة.',
       ctaBtn1: 'اطلب عرضًا فنيًا',
       ctaBtn2: 'تواصل معنا',
 
@@ -1365,7 +1365,7 @@ class Component extends DCLogic {
       ftDesc: 'فحصٌ جوي ذكي لمحطات الطاقة الشمسية — طائراتٌ مسيّرة، وتحليلٌ بنماذج ذكاءٍ اصطناعي سعودية 100%.',
       ftLinks: 'روابط',
       ftContact: 'تواصل',
-      ftRights: '© 2026 عين الشمس · جميع الحقوق محفوظة',
+      ftRights: '© 2026 شعاع · جميع الحقوق محفوظة',
       ftMade: 'صُنع في السعودية بكل فخر',
       altSaudiMade: 'صنع في السعودية',
     },
@@ -1376,10 +1376,10 @@ class Component extends DCLogic {
       heroFlip: 'none',
       sevLabelW: '62px',
 
-      docTitle: 'Ain Al-Shams — AI-Powered Aerial Inspection for Solar Plants',
+      docTitle: 'SHUAA — AI-Powered Aerial Inspection for Solar Plants',
       docDesc: 'Drone-based aerial inspection of solar power plants, with visual and thermal analysis by Saudi-built AI models that reveal hotspots, cracks and dust build-up before they cost you.',
 
-      brandName: 'Ain Al-Shams',
+      brandName: 'SHUAA',
       brandSub: 'SOLAR AI INSPECTION',
       langSwitch: 'العربية',
       langShort: 'AR',
@@ -1397,8 +1397,8 @@ class Component extends DCLogic {
       shareX: 'X',
       shareLinkedIn: 'LinkedIn',
       shareMore: 'More options…',
-      shareMsg: 'Ain Al-Shams — AI-powered aerial inspection for solar plants',
-      shareSubject: 'Ain Al-Shams — AI-powered aerial inspection for solar plants',
+      shareMsg: 'SHUAA — AI-powered aerial inspection for solar plants',
+      shareSubject: 'SHUAA — AI-powered aerial inspection for solar plants',
       navServices: 'Services',
       navTech: 'Technology',
       navDefects: 'Defects',
@@ -1567,7 +1567,7 @@ class Component extends DCLogic {
       pr4p: 'A detailed geo-referenced report with maintenance priorities ready to execute.',
 
       ctaH2: 'Raise the performance of your solar assets with sharper decisions',
-      ctaP: 'Let Ain Al-Shams inspect your plant from the air and reveal what is holding back its output — before it turns into a loss.',
+      ctaP: 'Let SHUAA inspect your plant from the air and reveal what is holding back its output — before it turns into a loss.',
       ctaBtn1: 'Request a technical proposal',
       ctaBtn2: 'Contact us',
 
@@ -1590,7 +1590,7 @@ class Component extends DCLogic {
       ftDesc: 'AI-powered aerial inspection for solar power plants — drone flights, with analysis by 100% Saudi-built AI models.',
       ftLinks: 'Links',
       ftContact: 'Contact',
-      ftRights: '© 2026 Ain Al-Shams · All rights reserved',
+      ftRights: '© 2026 SHUAA · All rights reserved',
       ftMade: 'Proudly made in Saudi Arabia',
       altSaudiMade: 'Made in Saudi Arabia',
     },
