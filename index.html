@@ -687,10 +687,21 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
     <div data-reveal="" data-delay="120">
-      <div style="background:#fff;border:1px solid #E7EDF6;border-radius:18px;padding:12px;box-shadow:0 20px 44px -28px rgba(10,31,60,.22)">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfnGlLgHfaKHyJgNVPEcWLdmI2L9w2ph6kR6g_X6osUzYS-mg/viewform?embedded=true" title="{{ t.inspectionFormTitle }}" width="100%" height="1200" loading="lazy" style="display:block;border:0;border-radius:10px" referrerpolicy="strict-origin-when-cross-origin">{{ t.inspectionFormTitle }}</iframe>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnGlLgHfaKHyJgNVPEcWLdmI2L9w2ph6kR6g_X6osUzYS-mg/viewform" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;padding:14px 8px;color:#0A5CE6;font-weight:600;font-size:14px">{{ t.openInspectionForm }}</a>
-      </div>
+      <form action="https://docs.google.com/forms/d/e/1FAIpQLSfnGlLgHfaKHyJgNVPEcWLdmI2L9w2ph6kR6g_X6osUzYS-mg/formResponse" method="POST" target="_blank" style="background:#fff;border:1px solid #E7EDF6;border-radius:18px;padding:clamp(24px,3vw,34px);box-shadow:0 20px 44px -28px rgba(10,31,60,.22)">
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="pageHistory" value="0">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fName }}</span><input name="entry.556021309" required="" autocomplete="name" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fCompany }}</span><input name="entry.865918413" autocomplete="organization" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:16px">
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fEmail }}</span><input name="entry.1897642365" type="email" required="" autocomplete="email" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fCapacity }}</span><input name="entry.888073276" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+        </div>
+        <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fPhone }}</span><input name="entry.1674009751" type="tel" autocomplete="tel" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+        <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fMessage }}</span><textarea name="entry.1962551328" rows="4" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;resize:vertical;font-family:inherit" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></textarea></label>
+        <button type="submit" style="margin-top:20px;width:100%;background:#0A5CE6;color:#fff;padding:15px;border:none;border-radius:11px;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 12px 26px -12px rgba(10,92,230,.6)" style-hover="background:#0846b3">{{ t.fSubmit }}</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1334,11 +1345,10 @@ class Component extends DCLogic {
       fName: 'الاسم',
       fCompany: 'الجهة / الشركة',
       fEmail: 'البريد الإلكتروني',
+      fPhone: 'رقم الجوال',
       fCapacity: 'القدرة (ميغاواط)',
       fMessage: 'رسالتك',
       fSubmit: 'أرسل الطلب',
-      inspectionFormTitle: 'نموذج طلب فحص محطة شمسية — شعاع',
-      openInspectionForm: 'فتح النموذج في صفحة جديدة',
       submitUnavailable: 'الطلب لم يُرسل. خدمة الطلبات عبر الموقع قيد التفعيل؛ تواصل معنا على',
       okTitle: 'شكراً لك',
       okBody: 'استلمنا طلبك، وسيتواصل معك فريقنا قريباً لترتيب فحص محطتك.',
@@ -1562,11 +1572,10 @@ class Component extends DCLogic {
       fName: 'Name',
       fCompany: 'Organisation / Company',
       fEmail: 'Email',
+      fPhone: 'Mobile number',
       fCapacity: 'Capacity (MW)',
       fMessage: 'Your message',
       fSubmit: 'Send request',
-      inspectionFormTitle: 'Solar plant inspection request — SHUAA',
-      openInspectionForm: 'Open the form in a new tab',
       submitUnavailable: 'Your request was not sent. Online requests are being set up; please call us at',
       okTitle: 'Thank you',
       okBody: 'We have received your request. Our team will be in touch shortly to arrange your plant inspection.',
