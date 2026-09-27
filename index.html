@@ -56,6 +56,8 @@ input,textarea,button{font-family:inherit}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(247,167,10,.6)}70%{box-shadow:0 0 0 9px rgba(247,167,10,0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes wordSwap{0%{opacity:0;transform:translateY(.5em);filter:blur(3px)}100%{opacity:1;transform:none;filter:blur(0)}}
+.header-mark{position:relative;display:block;flex:none;width:40px;height:44px;overflow:hidden}
+.header-mark img{position:absolute;top:-3px;left:-1px;display:block;width:90px;max-width:none;height:auto}
 </style>
 </helmet>
 
@@ -64,7 +66,7 @@ input,textarea,button{font-family:inherit}
 <header id="top" style="position:sticky;top:0;z-index:60;background:rgba(255,255,255,.58);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(231,236,244,.75)">
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
     <a href="#top" style="display:flex;align-items:center;gap:12px">
-      <img src="assets/ain-icon.png" alt="{{ t.brandName }}" style="height:44px;width:auto;display:block;position:relative;inset-inline-end:7px;mix-blend-mode:multiply">
+      <span class="header-mark"><img src="assets/shuaa-logo.png" alt="{{ t.brandName }}"></span>
       <span style="display:flex;flex-direction:column;line-height:1.06;gap:4px">
 
         <span style="font-weight:700;font-size:19px;color:#0A1F3C">{{ t.brandName }}</span><span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;color:#8090A8;text-align:{{ t.startSide }}">{{ t.brandSub }}</span>
@@ -687,7 +689,7 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
     <div data-reveal="" data-delay="120">
-      <form action="https://docs.google.com/forms/d/e/1FAIpQLSfnGlLgHfaKHyJgNVPEcWLdmI2L9w2ph6kR6g_X6osUzYS-mg/formResponse" method="POST" target="_blank" style="background:#fff;border:1px solid #E7EDF6;border-radius:18px;padding:clamp(24px,3vw,34px);box-shadow:0 20px 44px -28px rgba(10,31,60,.22)">
+      <form action="https://docs.google.com/forms/d/e/1FAIpQLSfnGlLgHfaKHyJgNVPEcWLdmI2L9w2ph6kR6g_X6osUzYS-mg/formResponse" method="POST" target="google-form-target" onSubmit="{{ submitContact }}" style="background:#fff;border:1px solid #E7EDF6;border-radius:18px;padding:clamp(24px,3vw,34px);box-shadow:0 20px 44px -28px rgba(10,31,60,.22)">
         <input type="hidden" name="fvv" value="1">
         <input type="hidden" name="pageHistory" value="0">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
@@ -700,8 +702,13 @@ input,textarea,button{font-family:inherit}
         </div>
         <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fPhone }}</span><input name="entry.1674009751" type="tel" autocomplete="tel" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
         <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fMessage }}</span><textarea name="entry.1962551328" rows="4" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;resize:vertical;font-family:inherit" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></textarea></label>
-        <button type="submit" style="margin-top:20px;width:100%;background:#0A5CE6;color:#fff;padding:15px;border:none;border-radius:11px;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 12px 26px -12px rgba(10,92,230,.6)" style-hover="background:#0846b3">{{ t.fSubmit }}</button>
+        <button type="submit" disabled="{{ formSending }}" aria-busy="{{ formSending }}" style="margin-top:20px;width:100%;background:{{ formSubmitBg }};color:#fff;padding:15px;border:none;border-radius:11px;font-weight:600;font-size:16px;cursor:{{ formSubmitCursor }};opacity:{{ formSubmitOpacity }};box-shadow:0 12px 26px -12px rgba(10,92,230,.6)" style-hover="background:#0846b3">{{ formSubmitLabel }}</button>
+        <div role="status" aria-live="polite" style="display:{{ formStatusDisplay }};margin-top:16px;padding:14px 16px;border-radius:11px;background:#edf9f1;border:1px solid #bde5c9;color:#176b36;line-height:1.65">
+          <strong style="display:block;font-size:15px">{{ t.okTitle }}</strong>
+          <span style="display:block;font-size:13.5px;margin-top:2px">{{ t.okBody }}</span>
+        </div>
       </form>
+      <iframe name="google-form-target" title="{{ t.formTargetTitle }}" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
     </div>
   </div>
 </section>
@@ -770,6 +777,8 @@ class Component extends DCLogic {
     lang: Component.initialLang(),
     shareOpen: false,
     copied: false,
+    formSending: false,
+    formSent: false,
   };
 
   // الرابط المُشارَك: العنوان النظيف بلا ?lang، ليختار المتصفّح لغة الزائر.
@@ -893,6 +902,26 @@ class Component extends DCLogic {
   closeMenu = () => this.setState({ menuOpen: false });
   setMode = (m) => () => this.setState({ mode: m });
 
+  submitContact = (e) => {
+    if (this._formInFlight) {
+      e.preventDefault();
+      return;
+    }
+    this._formInFlight = true;
+    this._contactForm = e.currentTarget;
+    clearTimeout(this._formStatusTimer);
+    this.setState({ formSending: true, formSent: false });
+  };
+
+  onFormFrameLoad = () => {
+    // يتجاهل تحميل iframe الأولي، ويعرض النجاح فقط بعد إرسال النموذج فعلياً.
+    if (!this._formInFlight) return;
+    this._formInFlight = false;
+    if (this._contactForm && this._contactForm.reset) this._contactForm.reset();
+    this.setState({ formSending: false, formSent: true });
+    this._formStatusTimer = setTimeout(() => this.setState({ formSent: false }), 8000);
+  };
+
   buildCells(mode) {
     const rows = 4, cols = 9, cells = [];
     const hot = { '0-6': 1, '0-7': 0.7, '1-6': 0.85, '1-7': 0.5, '3-1': 0.95, '3-2': 0.6, '2-1': 0.5 };
@@ -988,6 +1017,8 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize);
     document.addEventListener('pointerdown', this.onDocPointerDown, true);
     document.addEventListener('keydown', this.onDocKeyDown);
+    this._formFrame = document.querySelector('iframe[name="google-form-target"]');
+    if (this._formFrame) this._formFrame.addEventListener('load', this.onFormFrameLoad);
     this.wordTimer = setInterval(() => {
       this.setState(s => ({ wordIndex: (s.wordIndex + 1) % this.i18n[s.lang].heroWords.length }));
     }, 2600);
@@ -1011,7 +1042,7 @@ class Component extends DCLogic {
     document.querySelectorAll('[data-count]').forEach(n => cio.observe(n));
   }
 
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); document.removeEventListener('pointerdown', this.onDocPointerDown, true); document.removeEventListener('keydown', this.onDocKeyDown); clearInterval(this.wordTimer); clearTimeout(this._defectIn); clearTimeout(this._defectOut); clearTimeout(this._copyTimer); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); document.removeEventListener('pointerdown', this.onDocPointerDown, true); document.removeEventListener('keydown', this.onDocKeyDown); if (this._formFrame) this._formFrame.removeEventListener('load', this.onFormFrameLoad); clearInterval(this.wordTimer); clearTimeout(this._defectIn); clearTimeout(this._defectOut); clearTimeout(this._copyTimer); clearTimeout(this._formStatusTimer); }
 
   // المفاتيح تُترجَم عبر t.mix وقت العرض حتى لا تتكرّر الأرقام لكل لغة.
   defectMixData = {
@@ -1086,6 +1117,13 @@ class Component extends DCLogic {
       navDisplay: this.state.menuOpen ? 'flex' : 'none',
       toggleMenu: this.toggleMenu,
       closeMenu: this.closeMenu,
+      submitContact: this.submitContact,
+      formSending: this.state.formSending,
+      formSubmitLabel: this.state.formSending ? t.fSending : t.fSubmit,
+      formSubmitBg: this.state.formSending ? '#6f86a7' : '#0A5CE6',
+      formSubmitCursor: this.state.formSending ? 'wait' : 'pointer',
+      formSubmitOpacity: this.state.formSending ? '.82' : '1',
+      formStatusDisplay: this.state.formSent ? 'block' : 'none',
       isThermal,
       isRgb: !isThermal,
       setThermal: this.setMode('thermal'),
@@ -1349,6 +1387,8 @@ class Component extends DCLogic {
       fCapacity: 'القدرة (ميغاواط)',
       fMessage: 'رسالتك',
       fSubmit: 'أرسل الطلب',
+      fSending: 'جارٍ إرسال الطلب…',
+      formTargetTitle: 'إرسال نموذج التواصل',
       submitUnavailable: 'الطلب لم يُرسل. خدمة الطلبات عبر الموقع قيد التفعيل؛ تواصل معنا على',
       okTitle: 'شكراً لك',
       okBody: 'استلمنا طلبك، وسيتواصل معك فريقنا قريباً لترتيب فحص محطتك.',
@@ -1576,6 +1616,8 @@ class Component extends DCLogic {
       fCapacity: 'Capacity (MW)',
       fMessage: 'Your message',
       fSubmit: 'Send request',
+      fSending: 'Sending request…',
+      formTargetTitle: 'Contact form submission',
       submitUnavailable: 'Your request was not sent. Online requests are being set up; please call us at',
       okTitle: 'Thank you',
       okBody: 'We have received your request. Our team will be in touch shortly to arrange your plant inspection.',
