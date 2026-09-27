@@ -693,14 +693,14 @@ input,textarea,button{font-family:inherit}
         <input type="hidden" name="fvv" value="1">
         <input type="hidden" name="pageHistory" value="0">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px">
-          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fName }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.556021309" required="" autocomplete="name" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fName }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.556021309" required="required" autocomplete="name" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
           <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fCompany }}</span><input name="entry.865918413" autocomplete="organization" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:16px">
-          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fEmail }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.1897642365" type="email" required="" autocomplete="email" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+          <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fEmail }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.1897642365" type="email" required="required" autocomplete="email" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
           <label style="display:block"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fCapacity }}</span><input name="entry.888073276" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
         </div>
-        <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fPhone }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.1674009751" type="tel" required="" autocomplete="tel" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
+        <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fPhone }} <span aria-hidden="true" style="color:#d83b32">*</span></span><input name="entry.1674009751" type="tel" required="required" autocomplete="tel" dir="ltr" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;text-align:{{ t.startSide }}" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></label>
         <label style="display:block;margin-top:16px"><span style="display:block;font-size:13.5px;font-weight:600;color:#37475f;margin-bottom:7px">{{ t.fMessage }}</span><textarea name="entry.1962551328" rows="4" style="width:100%;padding:12px 14px;border:1px solid #dbe3ef;border-radius:10px;font-size:15px;color:#0A1F3C;background:#fbfcfe;resize:vertical;font-family:inherit" style-focus="border-color:#0A5CE6;outline:none;box-shadow:0 0 0 3px rgba(10,92,230,.12)"></textarea></label>
         <button type="submit" disabled="{{ formSending }}" aria-busy="{{ formSending }}" style="margin-top:20px;width:100%;background:{{ formSubmitBg }};color:#fff;padding:15px;border:none;border-radius:11px;font-weight:600;font-size:16px;cursor:{{ formSubmitCursor }};opacity:{{ formSubmitOpacity }};box-shadow:0 12px 26px -12px rgba(10,92,230,.6)" style-hover="background:#0846b3">{{ formSubmitLabel }}</button>
         <div role="status" aria-live="polite" style="display:{{ formStatusDisplay }};margin-top:16px;padding:14px 16px;border-radius:11px;background:#edf9f1;border:1px solid #bde5c9;color:#176b36;line-height:1.65">
@@ -903,6 +903,17 @@ class Component extends DCLogic {
   setMode = (m) => () => this.setState({ mode: m });
 
   submitContact = (e) => {
+    const form = e.currentTarget;
+    const requiredNames = ['entry.556021309', 'entry.1897642365', 'entry.1674009751'];
+    requiredNames.forEach(name => {
+      const field = form.querySelector('[name="' + name + '"]');
+      if (field) field.required = true;
+    });
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.reportValidity();
+      return;
+    }
     if (this._formInFlight) {
       e.preventDefault();
       return;
